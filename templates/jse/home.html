@@ -1,3 +1,40 @@
 {% extends 'basic.html' %}
 
 {% block title %} Get the Latest Jobs on Our Popular Job Seach Engine{% endblock title %}
+
+
+{% block content %}
+{% if user.is_authenticated %}
+
+{% comment %} After Authentication Content Here {% endcomment %}
+
+{% else %}
+<div class="container my-3" style="max-width: 960px;">
+
+    <form action="login/" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="loginusername" class="form-label">Enter your Username</label>
+            <input type="text" class="form-control" id="loginusername" name="loginusername">
+
+        </div>
+        <div class="mb-3">
+            <label for="loginpassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="loginpassword" name="loginpassword">
+        </div>
+
+        <div>
+            <ul>
+                <li> New User?<a href="/" type="link" data-bs-toggle="modal" data-bs-target="#signupModal"> SignUp</a>
+                </li>
+            </ul>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+{% endif %}
+</div>
+
+{% endblock content %}
