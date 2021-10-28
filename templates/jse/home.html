@@ -2,39 +2,83 @@
 
 {% block title %} Get the Latest Jobs on Our Popular Job Seach Engine{% endblock title %}
 
+{% block search %}
+
+<form class="d-flex" method="get" action="/searchstate">
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" id="query" />
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+
+{% endblock search %}
 
 {% block content %}
 {% if user.is_authenticated %}
 
-{% comment %} After Authentication Content Here {% endcomment %}
+<!-- After Authentication Content Here  -->
+<!-- {{ states }} -->
+
+<div class="container">
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">s_no</th>
+        <th scope="col">States</th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr>
+        <th scope="row">&#187;&#187;</th>
+        <td><a type="submit" href="/categories/?all" style="text-decoration: none; color:brown" name="catq" id="catq" > 
+          Click Here For all states</a></td>
+      </tr>
+        {% for state  in states  %}
+      <tr>
+        <th scope="row">{{state.sr_no}}</th>
+        <td><a type="submit" href="/categories/?{{state.state}}" style="text-decoration: none;" name="catq" id="catq" > 
+          {{state.state}}</a></td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+
+
+</div>
+
+
+
 
 {% else %}
-<div class="container my-3" style="max-width: 960px;">
+<div class="container my-3"
+    style="max-width: 500px; min-height: 580px;  flex-direction: column; display: flex; align-content:center;">
+    <div class="my-auto" style="padding-bottom: 80px;">
+        <form action="login/" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="loginusername" class="form-label">Enter your Username</label>
+                <input type="text" class="form-control" id="loginusername" name="loginusername">
 
-    <form action="login/" method="post">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="loginusername" class="form-label">Enter your Username</label>
-            <input type="text" class="form-control" id="loginusername" name="loginusername">
+            </div>
+            <div class="mb-3">
+                <label for="loginpassword" class="form-label">Password</label>
+                <input type="password" class="form-control" id="loginpassword" name="loginpassword">
+            </div>
 
-        </div>
-        <div class="mb-3">
-            <label for="loginpassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="loginpassword" name="loginpassword">
-        </div>
-
-        <div>
-            <ul>
-                <li> New User?<a href="/" type="link" data-bs-toggle="modal" data-bs-target="#signupModal"> SignUp</a>
-                </li>
-            </ul>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+            <div>
+                <ul>
+                    <li> New User?<a href="/" type="link" data-bs-toggle="modal" data-bs-target="#signupModal"
+                            style="text-decoration: none;"> SignUp</a>
+                    </li>
+                </ul>
+            </div>
+            <button type="submit" class="btn btn-primary mx-auto">Login</button>
+        </form>
+    </div>
 </div>
+
 
 
 {% endif %}
-</div>
 
 {% endblock content %}

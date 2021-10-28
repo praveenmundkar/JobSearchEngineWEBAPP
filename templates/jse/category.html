@@ -1,0 +1,43 @@
+{% extends 'basic.html' %}
+ {% block title %} requested categories {% endblock title %} 
+ 
+ {% block search %}
+
+<form class="d-flex" method="get" action="/searchcat">
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" id="query" />
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+
+{% endblock search %}
+
+
+{% block content %}
+
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">s_no</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr>
+        <th scope="row">&#187;&#187;</th>
+        <td><a type="submit" href="/subcategories/?all" style="text-decoration: none; color:brown" name="catq" id="catq" > 
+          Click Here For all Categories</a></td>
+      </tr>
+      {% for category in categories %}
+      <tr>
+        <th scope="row"></th>
+        <td>
+          <a href="/subcategories/?{{category.category}}" style="text-decoration: none">
+            {{category.category}}</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}

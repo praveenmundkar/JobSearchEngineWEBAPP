@@ -1,0 +1,104 @@
+{% extends 'basic.html' %}
+
+
+{% block content %}
+
+{% comment %} for state search {% endcomment %}
+{% if result1 %}
+<div class="container">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">s_no</th>
+                <th scope="col">Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for state in result1 %}
+            <tr>
+                <th scope="row"></th>
+                <td><a href="/categories/?{{state.state}}" style="text-decoration: none;"> {{state.state}}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% comment %} for category search {% endcomment %}
+{% if result2 %}
+<div class="container">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">s_no</th>
+                <th scope="col">Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in result2 %}
+            <tr>
+                <th scope="row"></th>
+                <td><a href="/subcategories/?{{category.category}}" style="text-decoration: none;"> {{category.category}}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% comment %} for subcategory search {% endcomment %}
+{% if result3 %}
+<div class="container">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">s_no</th>
+                <th scope="col">Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for category in result3 %}
+            <tr>
+                <th scope="row"></th>
+                <td><a href="/subcategories/" style="text-decoration: none;"> {{category.subcategory}}</a></td>
+            </tr>
+            {% endfor %}
+         
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+{% comment %} for job saerch {% endcomment %}
+
+{% if result4 %}
+<div class="container">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">s_no</th>
+                <th scope="col">Company</th>
+                <th scope="col">Job Position</th>
+                <th scope="col">Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for category in result4 %}
+            <tr>
+                <th scope="row"></th>
+                <td><a href="//" style="text-decoration: none;"> {{category.subcategory}}</a></td>
+                <td>{{job.job_position}}</td>
+      <td>{{job.location}}</td>
+            </tr>
+            {% endfor %}
+         
+        </tbody>
+    </table>
+</div>
+{% endif %}
+{% endblock content %}

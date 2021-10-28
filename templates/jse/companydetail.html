@@ -1,0 +1,38 @@
+{% extends 'basic.html' %}
+
+{% block title %} Comapny-Page {% endblock title %}
+
+{% block css %}
+
+.cdpage{
+    max-width: 900px;
+    margin-top: 50px;
+    padding: 50px;
+    border: 2px solid #eaebee;
+    border-radius: 2px;
+}
+
+{% endblock css %}
+
+
+
+
+
+{% block content %}
+
+
+{% for companydetail in company_details %}
+<div class="container cdpage">
+<div style="border: ;">
+<h3> {{companydetail.name}}</h3>
+<h5>{{companydetail.state}}</h5>
+<p>{{companydetail.description}}</p>
+</div>
+</div>
+{% endfor %}
+
+
+{% endblock content %}
+
+
+

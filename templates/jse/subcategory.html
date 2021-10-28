@@ -1,0 +1,48 @@
+{% extends 'basic.html' %}
+
+{% block title %} We have following subcategories {% endblock title %}
+
+ {% block search %}
+
+<form class="d-flex" method="get" action="/searchsubcat">
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" id="query" />
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+
+{% endblock search %}
+
+
+{% block content %}
+
+<div class="container">
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">s_no</th>
+        <th scope="col">subcategory</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">&#187;&#187;</th>
+        <td><a type="submit" href="/jobs/?al?l" style="text-decoration: none; color:brown" name="subcatq" id="subcatq" > 
+          Click Here For all SubCategories</a></td>
+      </tr>
+        {% for subcategory in subcategories %}
+      <tr>
+        <th scope="row"></th>
+        <td><a href="/jobs/?{{subcategory.subcategory}}" style="text-decoration: none;"> {{subcategory.subcategory}}</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+</div>
+
+
+{% endblock content %}
+
+
+

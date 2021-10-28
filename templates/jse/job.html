@@ -1,0 +1,46 @@
+{% extends 'basic.html' %}
+
+{% block title %} found jobs {% endblock title %}
+
+ {% block search %}
+
+<form class="d-flex" method="get" action="/searchjob">
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" id="query" />
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+
+{% endblock search %}
+
+
+{% block content %}
+
+<div class="container">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">sr_no</th>
+      <th scope="col">Company</th>
+      <th scope="col">Job Position</th>
+      <th scope="col">Location</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for job in jobs  %}
+    <tr>
+      <th scope="row"></th>
+      <td><a href="/company_details/?{{job.company}}" style="text-decoration: none;">{{job.company}}</a></td>
+      <td>{{job.job_position}}</td>
+      <td>{{job.location}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+</div>
+
+{% endblock content %}
+
+
+
